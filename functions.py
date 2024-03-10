@@ -8,7 +8,7 @@ def get_data():
     data = response.json()
     
     print("Data Retrieved Successfully")
-    return data
+    return data, player
 
 
 def put_data_in_dic(data):
@@ -31,8 +31,9 @@ def put_data_in_dic(data):
     return cleaned_data, user_choice
 
 
-def write_to_file(user_choice, sorted_data):
-    with open(user_choice, "w") as file:
+def write_to_file(user_choice, sorted_data, player):
+    with open(f"{user_choice}.txt", "w") as file:
+        file.write(player + "\n")
         for skill_name, skill_level in sorted_data:
             file.write(f"{skill_name}: {skill_level}\n")
     print("Written to file successfully")
