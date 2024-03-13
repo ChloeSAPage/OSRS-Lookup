@@ -1,19 +1,32 @@
 import requests
 import random
 
-
-def get_data():
+def check_status():
     '''
-    Retrieve Data from OSRS API for a given user.
+    Check API status for given user.
     '''
     player = input("Enter a Player Name: ")
     # player = "player"
     URL = f"https://secure.runescape.com/m=hiscore_oldschool/index_lite.json?player={player}"
     response = requests.get(URL)
-    data = response.json()
+    status= response.status_code
+    
+    if status == 200:
+        return True, response, player
+    elif response.status_code == 404:
+        return False, response, player
+    else:
+        return False, response, player
+    
+    
 
+def get_data(response):
+    '''
+    Retrieve Data from OSRS API for a given user.
+    '''
+    data = response.json()
     print("Data Retrieved Successfully")
-    return data, player
+    return data
 
 
 def put_data_in_dic(data, user_choice):
@@ -43,7 +56,7 @@ def write_to_file(user_choice, sorted_data, player):
     Write data and player name to file. 
     '''
     with open(f"{player}_{user_choice}.txt", "w") as file:
-        file.write(player + "\n")
+        file.write(f"Username: {player}\n")
         for name, value in sorted_data:
             file.write(f"{name}: {value}\n")
     print(f"Written to {player}_{user_choice}.txt successfully")
