@@ -1,6 +1,7 @@
 import requests
 import random
 
+
 def check_status():
     '''
     Check API status for given user.
@@ -9,16 +10,15 @@ def check_status():
     # player = "player"
     URL = f"https://secure.runescape.com/m=hiscore_oldschool/index_lite.json?player={player}"
     response = requests.get(URL)
-    status= response.status_code
-    
+    status = response.status_code
+
     if status == 200:
         return True, response, player
     elif response.status_code == 404:
         return False, response, player
     else:
         return False, response, player
-    
-    
+
 
 def get_data(response):
     '''
@@ -31,7 +31,7 @@ def get_data(response):
 
 def put_data_in_dic(data, user_choice):
     '''
-    Data is then spliced and put into a dictionary.
+    Data is spliced and put into a dictionary.
     '''
     chosen_data = data[user_choice]
     cleaned_data = {}
@@ -57,8 +57,10 @@ def write_to_file(user_choice, sorted_data, player):
     '''
     with open(f"{player}_{user_choice}.txt", "w") as file:
         file.write(f"Username: {player}\n")
+
         for name, value in sorted_data:
             file.write(f"{name}: {value}\n")
+
     print(f"Written to {player}_{user_choice}.txt successfully")
 
 

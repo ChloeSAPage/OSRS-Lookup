@@ -1,9 +1,12 @@
 from functions import put_data_in_dic, write_to_file, get_data, get_random, check_status
 
-# Player examples include player, Figs, David, Karma, Hunter
-status, response, player = check_status()
 
-if status == True:
+# No API Key is needed just install requests and run file
+
+# Player examples include player, Figs, David, Karma, Hunter
+is_successful, response, player = check_status()
+
+if is_successful == True:
     data = get_data(response)
 
     # Ask if user wants a random choice
@@ -30,5 +33,5 @@ if status == True:
     else:
         print("Invalid choice")
 
-elif status == False:
+elif is_successful == False:
     print("Could not retrieve data for this Player.")
