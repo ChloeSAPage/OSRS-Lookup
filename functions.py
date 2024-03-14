@@ -74,23 +74,22 @@ def write_to_file(user_choice, sorted_data, player):
     '''
     if user_choice == "skills":
 
-        with open(f"{player}_{user_choice}.txt", "w") as file:
+        with open(f"player_info/{player}_{user_choice}.txt", "w") as file:
             file.write(f"Username: {player}\n")
 
             for name, value in sorted_data:
                 file.write(f"{name}: {value[0]} - {value[1]} XP\n")
 
     else:
-        with open(f"{player}_{user_choice}.txt", "w") as file:
+        with open(f"player_info/{player}_{user_choice}.txt", "w") as file:
             file.write(f"Username: {player}\n")
 
             for name, value in sorted_data:
                 file.write(f"{name}: {value}\n")
 
-    print(f"Written to {player}_{user_choice}.txt successfully")
+    print(f"Written to player_info/{player}_{user_choice}.txt successfully")
 
 
-# Get Random KC or Skill
 def get_random(data):
     '''
     Get a random skill or activity.
@@ -99,6 +98,7 @@ def get_random(data):
 
     new_data, user_choice = put_data_in_dic(data, choice)
 
+    # Get random choice from new_data keys
     value = random.choices(list(new_data.items()))
 
     return value, choice

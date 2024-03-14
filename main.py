@@ -3,7 +3,7 @@ from functions import put_data_in_dic, write_to_file, get_data, get_random, chec
 
 # No API Key is needed just install requests and run file
 
-# Player examples include player, Figs, David, Karma, Hunter
+# input examples include player, Figs, David, Karma, Hunter
 is_successful, response, player = check_status()
 
 if is_successful == True:
@@ -11,7 +11,7 @@ if is_successful == True:
 
     # Ask if user wants a random choice
     random_choice = input(
-        "Would you like to get a single random choice? y or n ").lower()
+        "Would you like to get a single random choice? (y or n) ").lower()
     # random_choice = "n"
 
     if random_choice == "y":
@@ -23,7 +23,6 @@ if is_successful == True:
         user_choice = input("Activities or Skills? ").lower()
         # user_choice = "skills"
         cleaned_data, user_choice = put_data_in_dic(data, user_choice)
-        print(cleaned_data)
         # Sort them by skill level or KC
         sorted_data = sorted(cleaned_data.items(),
                              reverse=True, key=lambda a: a[1])
