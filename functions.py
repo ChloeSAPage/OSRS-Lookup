@@ -11,7 +11,8 @@ def check_status():
     URL = f"https://secure.runescape.com/m=hiscore_oldschool/index_lite.json?player={player}"
     response = requests.get(URL)
     status = response.status_code
-
+    
+    # Check if the API call worked
     if status == 200:
         return True, response, player
 
@@ -41,7 +42,6 @@ def put_data_in_dic(data, user_choice):
         name = data["name"]
 
         if user_choice == "skills":
-            #  Skill: lvl
             skill_level = data["level"]
             xp = data["xp"]
 
@@ -57,20 +57,22 @@ def put_data_in_dic(data, user_choice):
             else:
                 xp = str(xp)
 
+            # Put the Skill, Level and XP in new dictionary.
             cleaned_data[name] = [skill_level, xp]
 
         elif user_choice == "activities":
             score = data["score"]
             # Don't include KC less than 1
             if score > 0:
+                # Put the Activity and the Score into new dictionary
                 cleaned_data[name] = score
 
-    return cleaned_data, user_choice
+    return cleaned_data
 
 
 def write_to_file(user_choice, sorted_data, player):
     '''
-    Write data and player name to file. 
+    Write data and player name to file in the player_info directory. 
     '''
     if user_choice == "skills":
 
@@ -95,8 +97,9 @@ def get_random(data):
     Get a random skill or activity.
     '''
     choice = random.choice(("skills", "activities"))
-
-    new_data, user_choice = put_data_in_dic(data, choice)
+    
+    # Get dictionary of either skills or activities
+    new_data = put_data_in_dic(data, choice)
 
     # Get random choice from new_data keys
     value = random.choices(list(new_data.items()))

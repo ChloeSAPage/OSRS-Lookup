@@ -22,7 +22,7 @@ if is_successful == True:
         # Get data of User's choice
         user_choice = input("Activities or Skills? ").lower()
         # user_choice = "skills"
-        cleaned_data, user_choice = put_data_in_dic(data, user_choice)
+        cleaned_data = put_data_in_dic(data, user_choice)
         # Sort them by skill level or KC
         sorted_data = sorted(cleaned_data.items(),
                              reverse=True, key=lambda a: a[1])
