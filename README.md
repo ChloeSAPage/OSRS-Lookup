@@ -1,6 +1,6 @@
 # OSRS Lookup
 
-A CLI application that allows the user to look up a player from Old School RuneScape and find their stats.
+A CLI application that utilises the Old School RuneScape API, which enables the user to look up a player and find their in-game statistics.
 
 ## Using the app
 
