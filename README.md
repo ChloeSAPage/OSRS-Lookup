@@ -4,7 +4,7 @@ A CLI application that utilises the Old School RuneScape API, which enables the 
 
 ## Using the app
 
-This app requires no API key. Just install the requests module.
+This app requires no API key. Just clone the repo and install requests, then run `main.py`. 
 Example players that can be looked up include: player, Figs, David, Karma, Hunter, woox
 
 ### Example
